@@ -15,27 +15,35 @@ router.get('/', function(req, res){
 		res.render('admin/index', {user: result});
 	});
 });
+/* router.post('/edit', function(req, res){
+	adminModel.getByUname(req.cookies['uname'], function(result){
+	res.render('admin/edit', {user: result});
+});
+}); */
+router.get('/edit', function(req, res){
+	adminModel.getByUname(req.cookies['uname'], function(result){
+	res.render('admin/edit', {user: result});
+});
+});
 router.get('/edit/:uname', function(req, res){
-	adminModel.getByUname(req.params.uname, function(result){
-		res.render('home/edit', {user: result});
+		adminModel.getByUname(req.params.uname, function(result){
+		res.render('admin/edit', {user: result});
 	});
 });
-router.post('/edit/:id', function(req, res){
+router.post('/edit', function(req, res){
 	
 	var user = {
-		name: req.params.name,
-		uname: req.body.uname,
-		phone: req.body.phone,
+		name: req.body.name,
+		username: req.body.uname,
 		mail: req.body.mail,
-		password: req.body.password,
-		
+		phone: req.body.phone,
+		password: req.body.password
 	};
-
-	userModel.update(user, function(status){
+	adminModel.update(user, function(status){
 		if(status){
-			res.redirect('/home/view_users');
+			res.redirect('/admin/edit');
 		}else{
-			res.redirect('/home/edit/'+req.params.id);
+			res.redirect('/admin/edit/'+req.params.uname);
 		}
 	});
 });

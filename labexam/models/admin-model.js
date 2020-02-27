@@ -45,7 +45,7 @@ module.exports= {
 	},
 	insert: function(user, callback){
 		var sql = "insert into admin values(?,?,?,?,?)";
-		db.execute(sql, [user.name, user.username, user.mail,user.phone,user.password], function(status){
+		db.execute(sql, [user.name, user.username, user.mail, user.phone, user.password], function(status){
 			if(status){
 				callback(true);
 			}else{
@@ -53,9 +53,9 @@ module.exports= {
 			}
 		});
 	},
-	update : function(user, callback){
-		var sql = "update user set username=?, password=?, type=? where id=?";
-		db.execute(sql, [user.username, user.password, user.type, user.id], function(status){
+	update : function(user, callback){		
+		var sql = "update admin set name=?,username=?, mail=?, phone=?,password=? where username=?";
+		db.execute(sql, [user.name, user.username, user.mail, user.phone, user.password,user.username], function(status){		
 			if(status){
 				callback(true);
 			}else{

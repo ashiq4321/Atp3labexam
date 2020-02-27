@@ -15,5 +15,9 @@ router.get('/', function(req, res){
 		res.render('customer/index', {user: result});
 	});
 });
-
+router.get('/edit/:uname', function(req, res){
+	customerModel.getByUname(req.params.uname, function(result){
+	res.render('customer/edit', {user: result});
+});
+});
 module.exports = router;
