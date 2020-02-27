@@ -16,7 +16,6 @@ router.get('/', function(req, res){
 			phone: req.body.phone,
 			password: req.body.password
 		};
-        console.log(user);
 		adminModel.insert(user, function(status){
 			if(status){
 				res.redirect('/login');

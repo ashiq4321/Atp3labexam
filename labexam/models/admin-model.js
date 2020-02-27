@@ -22,19 +22,20 @@ module.exports= {
 		});
 	},
 	validate: function(user, callback){
-		var sql ="SELECT * FROM managerinfo where username=? and password=?";
-		db.getResults(sql, [user.username, user.password], function(results){
-
-			if(results.length > 0){
+		var sql ="SELECT * FROM admin where username=? and password=?";
+		db.getResults(sql, [user.uname, user.password], function(results){
+			if(results.length > 0){			
 				callback(true);
 			}else{
 				callback(false);
 			}
 		});
 	},
-	getByUname: function(username, callback){
-		var sql = "select * from user where username=?";
-		db.getResults(sql, [username], function(results){
+	getByUname: function(uname, callback){
+		var sql = "select * from admin where username=?";
+		
+		db.getResults(sql, [uname], function(results){
+			
 			if(results.length > 0){
 				callback(results[0]);
 			}else{

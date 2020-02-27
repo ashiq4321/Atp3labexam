@@ -12,13 +12,27 @@ router.post('/', function(req, res){
 		uname: req.body.uname,
 		password: req.body.password
 	};
-	
-	if(req.body.usertype == "Admin"){
+	if(req.body.usertype=='admin'){
+		adminModel.validate(user, function(status){
+			if(status){
+				res.cookie('uname', req.body.uname);
+				res.redirect('/admin');
+			}else{
+				res.render('login/error');
+			}
+		});
+	}else{
+		customerModel.validate(user, function(status){
+			if(status){
+				res.cookie('uname', req.body.uname);
+				res.redirect('/customer');
+			}else{
+				res.render('login/error');
+			}
+		});
+	}
 		
-		}	
-		else{
-			res.send('invalid username/password');
-		}
+
 });
 
 module.exports = router;

@@ -2,9 +2,10 @@
 var express = require('express');
 var login = require('./controllers/login');
 var signup = require('./controllers/signup');
+var admin = require('./controllers/admin');
+var customer = require('./controllers/customer');
 /* var home = require('./controllers/home');
-var admin = require('./controllers/admin/admin');
-var customer = require('./controllers/customer/customer'); */
+ */
 /* 
 var logout = require('./controllers/logout'); */
 var ejs = require('ejs');
@@ -21,6 +22,8 @@ app.use(cookieParser());
 
 app.use('/login', login);
 app.use('/signup', signup);
+app.use('/admin', admin);
+app.use('/customer', customer);
 //app.use('/logout', logout);
 
 //routes
